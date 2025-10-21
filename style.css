@@ -1,0 +1,43 @@
+body {
+    margin : 40;
+    padding-left: 300px;
+    background-color: black;
+    
+}
+
+#start-button {
+    background-color: red;
+    color: black;
+    font-size: 24px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto;
+}
+
+#start-button:hover {
+    background-color: darkred;
+    cursor: pointer;
+    color: white
+}
+
+#game-box {
+    width: 800px;
+    height: 600px;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+
+    background-image: url("/images/road-background.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#game-box {
+    pointer-events: none;
+}
+
+#game-screen, #game-over-screen {
+    display: none;
+}
