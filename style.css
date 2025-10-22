@@ -4,6 +4,23 @@ body {
 
 }
 
+#start-screen {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 180px;
+}
+
+.images {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px; 
+}
+
 #start-button {
     background-color: red;
     color: black;
@@ -22,8 +39,8 @@ body {
 
 #game-box {
     background-color: burlywood;
-    width: 1900px;
-    height: 650px;
+    width: 2000px;
+    height: 800px;
 
     position: relative;
     overflow: hidden;

@@ -1,61 +1,54 @@
 class Tank {
-    constructor() {
-        this.node = document.createElement("img");
-        this.node.src = "./images/obstaculo-pixel-project.jpg";
-        gameBoxNode.append(this.node);
+  constructor() {
+    this.node = document.createElement("img");
+    this.node.src = "./images/obstaculo-pixel-project.jpg"; // asegúrate que esta ruta es correcta
+    gameBoxNode.append(this.node);
 
-        this.width = 100;
-        this.height = 130;
-        this.speed = 5;
+    this.width = 220;
+    this.height = 190;
+    this.speed = 5;
 
-        //spawn aleatorio
-        const spawn = [305, 505, 705, 905];
-        const randomSpawn = spawn[Math.floor(Math.random() * spawn.length)]
+    // 4 carriles (ajusta según tu fondo)
+    const spawn = [100, 450, 750, 1120];
+    const randomSpawn = spawn[Math.floor(Math.random() * spawn.length)];
 
-        this.x = randomSpawn
-        this.y = -this.height;
+    this.x = randomSpawn;
+    this.y = gameBoxNode.offsetHeight + 100; // empieza un poco fuera de pantalla
 
-        this.node.style.width = `${this.width}px`;
-        this.node.style.height = `${this.height}px`;
-        this.node.style.position = "absolute";
-        this.node.style.left = `${this.x}px`;
-        this.node.style.top = `${this.y}px`;
+    this.node.style.width = `${this.width}px`;
+    this.node.style.height = `${this.height}px`;
+    this.node.style.position = "absolute";
+    this.node.style.left = `${this.x}px`;
+    this.node.style.bottom = `${this.y}px`;
+  }
 
-    }
+  move() {
+    this.y -= this.speed;
+    this.node.style.bottom = `${this.y}px`;
+  }
 
-        move() {
-    this.y += this.speed;
-    this.node.style.top = `${this.y}px`;
-}
+  isOutOfScreen() {
+    return this.y + this.height < 0;
+  }
 
-isOutOfScreen() {
-    return this.y > gameBoxNode.offsetHeight;
-};
-
-remove() {
+  remove() {
     this.node.remove();
+  }
 }
 
-
-
-
-
-}
-
-//tanks spawn
+// Crear tanques nuevos
 function spawnTank() {
-    const newTank = new Tank();
-    tanksArr.push(newTank);
+  const newTank = new Tank();
+  tanksArr.push(newTank);
 }
 
-//Move tanks and elminate the previous ones
+// Moverlos y eliminar los que salen
 function moveTanks() {
-    tanksArr.forEach((tank, index) => {
-        tank.move();
-        if (tank.isOutOfScreen()) {
-            tank.remove();
-            tanksArr.splice(index, 1);
-        }
-    });
+  tanksArr.forEach((tank, index) => {
+    tank.move();
+    if (tank.isOutOfScreen()) {
+      tank.remove();
+      tanksArr.splice(index, 1);
+    }
+  });
 }
-  
