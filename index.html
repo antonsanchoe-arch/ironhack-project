@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,7 +32,18 @@
     
     <!-- GAME OVER SCREEN -->
     <div id="game-over-screen" class="container">
-      <img src="./images/game over pixel project.jpg" width="500" alt="logo">
+      <div class="game-over-content">
+        <img src="./images/game over pixel project.jpg" width="900" alt="logo">
+
+        <img id="tank-image" src="./images/tanque-ganador.jpg" alt="tank">
+        <img id="fire-wheels" src="./images/ruedas-con-fuego.jpg" alt="fire-wheels">
+
+        <!--extra buttons-->
+        <div class="buttons">
+          <button id="restart-button">Restart Game!</button>
+          <button id="back-to-menu-button">Back to the menu</button>
+        </div>
+      </div>
     </div>
 
   <script src="./js/F1.js"></script>
