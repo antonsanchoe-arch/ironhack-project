@@ -15,6 +15,11 @@ let tanksArr = [];
 
 let gameIntervalid = null;
 let tanksIntervalid = null;
+let fuelIntervalid = null;
+
+let score = 0;
+const scorePanel = document.querySelector("#score-panel");
+
 
 //* GAME FUNCTIONS
 function gameStart() {
@@ -35,19 +40,39 @@ function gameStart() {
   // Empezar bucles
   gameIntervalid = setInterval(gameLoop, Math.floor(1000 / 60));
   tanksIntervalid = setInterval(spawnTank, 1200);
+
+
+  //Score and fuel boost
+  fuelArr = [];
+  score = 0;
+  scorePanel.textContent = `score: ${score}`;
+
+  fuelIntervalid = setInterval(spawnFuel, 4500); //each 5s
+
+  //+ 1 in the score
+
+  scoreIntervalid = setInterval(() => {
+    score++;
+    scorePanel.innerText = `score: ${score}`;
+  }, 1000);
 }
 
 function gameLoop() {
   moveTanks();
   checkCollisions();
+  moveFuel();
+  checkFuelCollection();
 }
 
 function gameOver() {
   clearInterval(gameIntervalid);
   clearInterval(tanksIntervalid);
+  clearInterval(scoreIntervalid)
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";
   console.log("Game Over");
+
+  clearInterval(fuelIntervall);
 }
 
 function checkCollisions() {
@@ -88,3 +113,22 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") f1Obj.move("left");
   if (e.key === "ArrowRight") f1Obj.move("right");
 });
+
+
+//Detección del fuel y score final
+function checkFuelCollection() {
+  fuelArr.forEach((fuel, index) => {
+    if (
+      f1Obj.x < fuel.x + fuel.width &&
+      f1Obj.x + f1Obj.width > fuel.x &&
+      f1Obj.y < fuel.y + fuel.height &&
+      f1Obj.y + f1Obj.height > fuel.y
+    ){
+      score += 100;
+      scoreDisplay.textContent = `score; ${score}`;
+      
+      fuel.remove();
+      fuelArr.splice(index,1);
+    }
+  });
+}

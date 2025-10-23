@@ -22,7 +22,9 @@
     
     <!-- GAME SCREEN -->
     <div id="game-screen" class="container">
-      <!-- Game elements like score, lifes and other ui elements should be here (inside the game-screen but outside the game-box) -->
+      <!-- Game elements like score, lifes and other elements should be here (inside the game-screen but outside the game-box) -->
+       <!-- Score -->
+          <div id="score-panel">Score: 0</div>
 
       <div id="game-box">
         <!-- Game elements will be added here via javascript and DOM manipulation -->
@@ -43,12 +45,18 @@
           <button id="restart-button">Restart Game!</button>
           <button id="back-to-menu-button">Back to the menu</button>
         </div>
+
+        <!-- Score -->
+         <div id="score-display">Score: 0
+
+         </div>
       </div>
     </div>
 
   <script src="./js/F1.js"></script>
   <script src="./js/tanks-obstacles.js"></script>
   <script src="./js/script.js"></script>
+  <script src="./js/fuel.js"></script>
 
 </body>
 </html>

@@ -17,7 +17,7 @@ class f1 {
   }
 
   move(direction) {
-    const f1Speed = 25;
+    const f1Speed = 40;
 
     if (direction === "up") this.y += f1Speed;
     if (direction === "down") this.y -= f1Speed;
