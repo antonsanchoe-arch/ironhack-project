@@ -9,52 +9,57 @@ const backMenuButtonNode = document.querySelector("#back-to-menu-button");
 
 const gameBoxNode = document.querySelector("#game-box");
 
+const scorePanel = document.querySelector("#score-panel");
+const scoreDisplay = document.querySelector("#score-display");
+
 //* GLOBAL VARIABLES
 let f1Obj = null;
 let tanksArr = [];
+let fuelArr = [];
 
 let gameIntervalid = null;
 let tanksIntervalid = null;
 let fuelIntervalid = null;
+let scoreIntervalid = null;
 
 let score = 0;
-const scorePanel = document.querySelector("#score-panel");
 
+let lives = 4;
+const livesPanel = document.querySelector("#lives");
 
 //* GAME FUNCTIONS
 function gameStart() {
   console.log("Game Started");
 
-  // Mostrar/Ocultar pantallas
   gameScreenNode.style.display = "flex";
   StartScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "none";
 
-  // Resetear estado del juego
-  gameBoxNode.innerHTML = ""; // limpia todo el game box
+  gameBoxNode.innerHTML = "";
   tanksArr = [];
+  fuelArr = [];
 
-  // Crear coche
   f1Obj = new f1();
 
-  // Empezar bucles
-  gameIntervalid = setInterval(gameLoop, Math.floor(1000 / 60));
+  gameIntervalid = setInterval(gameLoop, 1000 / 60);
   tanksIntervalid = setInterval(spawnTank, 1200);
+  fuelIntervalid = setInterval(spawnFuel, 4500);
 
-
-  //Score and fuel boost
-  fuelArr = [];
   score = 0;
-  scorePanel.textContent = `score: ${score}`;
-
-  fuelIntervalid = setInterval(spawnFuel, 4500); //each 5s
-
-  //+ 1 in the score
+  scorePanel.textContent = `Score: ${score}`;
 
   scoreIntervalid = setInterval(() => {
     score++;
-    scorePanel.innerText = `score: ${score}`;
+    scorePanel.textContent = `Score: ${score}`;
   }, 1000);
+
+  //reset lives
+  lives = 4;
+  livesPanel.innerHTML = `
+    <img class="life" src="../images/rueda-ixel-pproject.jpg" alt="life">
+    <img class="life" src="../images/rueda=pixel-pproject.jpg" alt="life">
+    <img class="life" src="../images/rueda=pixel-pproject.jpg" alt="life">
+    <img class="life" src="../images/ruedapixel-pproject.jpg" alt="life">`;
 }
 
 function gameLoop() {
@@ -67,24 +72,57 @@ function gameLoop() {
 function gameOver() {
   clearInterval(gameIntervalid);
   clearInterval(tanksIntervalid);
-  clearInterval(scoreIntervalid)
+  clearInterval(scoreIntervalid);
+  clearInterval(fuelIntervalid);
+
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";
-  console.log("Game Over");
-
-  clearInterval(fuelIntervall);
+  scoreDisplay.textContent = `Final Score: ${score}`;
 }
 
 function checkCollisions() {
-  tanksArr.forEach((tank) => {
+  tanksArr.forEach((tank, index) => {
     if (
       f1Obj.x < tank.x + tank.width &&
       f1Obj.x + f1Obj.width > tank.x &&
       f1Obj.y < tank.y + tank.height &&
       f1Obj.y + f1Obj.height > tank.y
     ) {
-      console.log("Tank destroyed the F1! Game Over!");
-      gameOver();
+      console.log(" Colisión con tanque!");
+
+      // Eliminar el tanque que chocó
+      tank.remove();
+      tanksArr.splice(index, 1);
+
+      // Quitar una vida
+      lives--;
+      const lifeImages = document.querySelectorAll("#lives .life");
+      if (lifeImages.length > 0) {
+        lifeImages[lifeImages.length - 1].remove(); // elimina la última rueda
+      }
+
+      // Si no quedan vidas -> game over
+      if (lives <= 0) {
+        console.log(" GAME OVER!");
+        gameOver();
+      }
+    }
+  });
+}
+
+
+function checkFuelCollection() {
+  fuelArr.forEach((fuel, index) => {
+    if (
+      f1Obj.x < fuel.x + fuel.width &&
+      f1Obj.x + f1Obj.width > fuel.x &&
+      f1Obj.y < fuel.y + fuel.height &&
+      f1Obj.y + f1Obj.height > fuel.y
+    ) {
+      score += 100;
+      scorePanel.textContent = `Score: ${score}`;
+      fuel.remove();
+      fuelArr.splice(index, 1);
     }
   });
 }
@@ -95,40 +133,25 @@ StartButtonNode.addEventListener("click", gameStart);
 restartButtonNode.addEventListener("click", () => {
   clearInterval(gameIntervalid);
   clearInterval(tanksIntervalid);
-  gameStart(); // simplemente reinicia todo correctamente
+  clearInterval(scoreIntervalid);
+  clearInterval(fuelIntervalid);
+  gameStart();
 });
 
 backMenuButtonNode.addEventListener("click", () => {
   clearInterval(gameIntervalid);
   clearInterval(tanksIntervalid);
+  clearInterval(scoreIntervalid);
+  clearInterval(fuelIntervalid);
   gameOverScreenNode.style.display = "none";
   StartScreenNode.style.display = "flex";
 });
 
-//* MOVIMIENTO DEL COCHE (solo un listener global)
+//* MOVIMIENTO DEL COCHE
 document.addEventListener("keydown", (e) => {
-  if (!f1Obj) return; // si no hay coche, no mover
+  if (!f1Obj) return;
   if (e.key === "ArrowUp") f1Obj.move("up");
   if (e.key === "ArrowDown") f1Obj.move("down");
   if (e.key === "ArrowLeft") f1Obj.move("left");
   if (e.key === "ArrowRight") f1Obj.move("right");
 });
-
-
-//Detección del fuel y score final
-function checkFuelCollection() {
-  fuelArr.forEach((fuel, index) => {
-    if (
-      f1Obj.x < fuel.x + fuel.width &&
-      f1Obj.x + f1Obj.width > fuel.x &&
-      f1Obj.y < fuel.y + fuel.height &&
-      f1Obj.y + f1Obj.height > fuel.y
-    ){
-      score += 100;
-      scoreDisplay.textContent = `score; ${score}`;
-      
-      fuel.remove();
-      fuelArr.splice(index,1);
-    }
-  });
-}

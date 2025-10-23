@@ -4,8 +4,8 @@ class f1 {
     this.node.src = "./images/f1.jpg";
     gameBoxNode.append(this.node);
 
-    this.width = 130;
-    this.height = 160;
+    this.width = 120;
+    this.height = 140;
     this.x = 305;
     this.y = 0;
 
@@ -24,7 +24,6 @@ class f1 {
     if (direction === "left") this.x -= f1Speed;
     if (direction === "right") this.x += f1Speed;
 
-    // Limitar dentro del gameBox
     if (this.x < 0) this.x = 0;
     if (this.x + this.width > gameBoxNode.offsetWidth)
       this.x = gameBoxNode.offsetWidth - this.width;
@@ -32,7 +31,6 @@ class f1 {
     if (this.y + this.height > gameBoxNode.offsetHeight)
       this.y = gameBoxNode.offsetHeight - this.height;
 
-    // Actualizar posición visualmente
     this.node.style.left = `${this.x}px`;
     this.node.style.bottom = `${this.y}px`;
   }
