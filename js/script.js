@@ -56,10 +56,10 @@ function gameStart() {
   //reset lives
   lives = 4;
   livesPanel.innerHTML = `
-    <img class="life" src="../images/rueda-ixel-pproject.jpg" alt="life">
-    <img class="life" src="../images/rueda=pixel-pproject.jpg" alt="life">
-    <img class="life" src="../images/rueda=pixel-pproject.jpg" alt="life">
-    <img class="life" src="../images/ruedapixel-pproject.jpg" alt="life">`;
+    <img class="life" src="./images/rueda-pixel-project.jpg" alt="life">
+    <img class="life" src="./images/rueda-pixel-project.jpg" alt="life">
+    <img class="life" src="./images/rueda-pixel-project.jpg" alt="life">
+    <img class="life" src="./images/rueda-pixel-project.jpg" alt="life">`;
 }
 
 function gameLoop() {
