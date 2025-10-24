@@ -10,7 +10,7 @@ class Fuel {
     this.speed = 4;
 
     const spawn = [100, 450, 750, 1120];
-    const randomSpawn = spawn[Math.floor(Math.random() * spawn.length)];
+    const randomSpawn = spawn[Math.floor(Math.random() * spawn.length)];//select a randomly position from the array
 
     this.x = randomSpawn;
     this.y = gameBoxNode.offsetHeight + this.height;
@@ -26,11 +26,11 @@ class Fuel {
     this.y -= this.speed;
     this.node.style.bottom = `${this.y}px`;
   }
-
+  //detect when the image is out of the sreen
   isOutOfScreen() {
     return this.y + this.height < 0;
   }
-
+  //remove the image
   remove() {
     this.node.remove();
   }
@@ -40,7 +40,7 @@ function spawnFuel() {
   const newFuel = new Fuel();
   fuelArr.push(newFuel);
 }
-
+//remove when the fuel is out of screen
 function moveFuel() {
   fuelArr.forEach((fuel, index) => {
     fuel.move();

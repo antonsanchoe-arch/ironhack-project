@@ -17,7 +17,7 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 40px; 
+  gap: 40px; /*space beetween images*/
 }
 
 #start-button {

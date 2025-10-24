@@ -34,7 +34,7 @@ function gameStart() {
   gameScreenNode.style.display = "flex";
   StartScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "none";
-
+ //remove elements from the previous game
   gameBoxNode.innerHTML = "";
   tanksArr = [];
   fuelArr = [];
@@ -44,10 +44,10 @@ function gameStart() {
   gameIntervalid = setInterval(gameLoop, 1000 / 60);
   tanksIntervalid = setInterval(spawnTank, 1200);
   fuelIntervalid = setInterval(spawnFuel, 4500);
-
+  //reboots the score
   score = 0;
   scorePanel.textContent = `Score: ${score}`;
-
+  //+1/s in the score
   scoreIntervalid = setInterval(() => {
     score++;
     scorePanel.textContent = `Score: ${score}`;
@@ -77,6 +77,7 @@ function gameOver() {
 
   gameScreenNode.style.display = "none";
   gameOverScreenNode.style.display = "flex";
+  //final score
   scoreDisplay.textContent = `Final Score: ${score}`;
 }
 
@@ -90,12 +91,13 @@ function checkCollisions() {
     ) {
       console.log(" Colisión con tanque!");
 
-      // Eliminar el tanque que chocó
+      // Eliminar el tanque de collision
       tank.remove();
       tanksArr.splice(index, 1);
 
       // Quitar una vida
       lives--;
+      //remove a wheel(live)
       const lifeImages = document.querySelectorAll("#lives .life");
       if (lifeImages.length > 0) {
         lifeImages[lifeImages.length - 1].remove(); // elimina la última rueda
