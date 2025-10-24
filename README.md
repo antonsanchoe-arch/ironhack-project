@@ -12,17 +12,16 @@ During this game you should dodge tanks that try to destroy your F1 car, be fast
 
 # Main functionalities
 
--Free movement of the F1 car on the screen
--Random spawn of the tanks
--Random spawn of the petrol cans
--Automatic score
--Lives (4 lives)
--The game is over when you crash 4 times with tanks
--Every second the score increases by
--Each petrol can increases the score by 100
--when a petrol can and a tank is hitted it disappear
--each tank appear every 1,5 seconds and each petrol can appear each 4,5 seconds
--
+- Free movement of the F1 car on the screen
+- Random spawn of the tanks
+- Random spawn of the petrol cans
+- Automatic score
+- Lives (4 lives)
+- The game is over when you crash 4 times with tanks
+- Every second the score increases by
+- Each petrol can increases the score by 100
+- when a petrol can and a tank is hitted it disappear
+- each tank appear every 1,5 seconds and each petrol can appear each 4,5 seconds
 
 
 # Backlog Functionalities
