@@ -29,7 +29,6 @@ const livesPanel = document.querySelector("#lives");
 
 //* GAME FUNCTIONS
 function gameStart() {
-  console.log("Game Started");
 
   gameScreenNode.style.display = "flex";
   StartScreenNode.style.display = "none";

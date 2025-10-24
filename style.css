@@ -43,7 +43,7 @@ body {
   position: relative;
   overflow: hidden;
   user-select: none;
-  background-image: url("/images/road-background.jpg");
+  background-image: url("./images/road-background.jpg");
   background-size: cover;
   background-position: center;
   margin-left: 100px;

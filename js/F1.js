@@ -1,7 +1,7 @@
 class f1 {
   constructor() {
     this.node = document.createElement("img");
-    this.node.src = "./images/f1.jpg";
+    this.node.src = "./images/f1.png";
     gameBoxNode.append(this.node);
 
     this.width = 120;
