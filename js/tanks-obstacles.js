@@ -1,7 +1,7 @@
 class Tank {
   constructor() {
     this.node = document.createElement("img");
-    this.node.src = "./images/obstaculo-pixel-project.jpg";
+    this.node.src = "./images/obstaculo-pixel-project.png";
     gameBoxNode.append(this.node);
 
     this.width = 220;

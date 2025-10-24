@@ -1,7 +1,7 @@
 class Fuel {
   constructor() {
     this.node = document.createElement("img");
-    this.node.src = "./images/gasolina pixel project.jpg";
+    this.node.src = "./images/gasolina pixel project.png";
     this.node.classList.add("fuel");
     gameBoxNode.append(this.node);
 
