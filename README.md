@@ -2,8 +2,7 @@
 
 ## [Play the Game!](https://antonsanchoe-arch.github.io/ironhack-project/)
 
-![Game Logo](![Uploading ChatGPT Image 24 oct 2025, 12_49_15.png…]()
-)
+![Game Logo](file:///C:/Users/anton/Downloads/ChatGPT%20Image%2024%20oct%202025,%2012_49_15.png)
 
 
 # Description
