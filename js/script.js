@@ -41,7 +41,7 @@ function gameStart() {
   f1Obj = new f1();
 
   gameIntervalid = setInterval(gameLoop, 1000 / 60);
-  tanksIntervalid = setInterval(spawnTank, 1200);
+  tanksIntervalid = setInterval(spawnTank, 1500);
   fuelIntervalid = setInterval(spawnFuel, 4500);
   //reboots the score
   score = 0;
